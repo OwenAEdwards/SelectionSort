@@ -1,0 +1,105 @@
+1.) We begin with a data structure in a (presumably) unsorted order, we set our start to our current minimum
+2.) We check every element in the data structure for a new minimum
+3.) Once we've checked every element in the data structure and found the smallest minimum, we swap it with our starting value
+4.) We loop through this process and increment our start value by 1 each time since our previous start value is now "sorted"
+
+Real-life example:
+200 (N) glasses of different volume capacities: 100 mL, 110 mL, 120 mL, 130 mL, ... , 2090 mL, are spread across the floor of a
+room sorting them such that the 100mL glass is inside the 110mL glass and that the 110mL glass is inside the 120mL and so on up to
+the 2080mL glass being inside of the 2090mL glass, where we have to check each individual glass to see if there is not one 
+smaller than the previous (determining a new minimum)
+
+Example:
+
+[2, 8, 5, 3, 9, 4, 1]
+ ^                 ^
+ |                 |
+start            item
+
+(swap 2<->1)
+
+[1, 8, 5, 3, 9, 4, 2]
+    ^  ^
+    |  |
+start  new min
+
+[1, 8, 5, 3, 9, 4, 2]
+    ^     ^
+    |     |
+start  new min
+
+[1, 8, 5, 3, 9, 4, 2]
+    ^              ^
+    |              | 
+start             item
+
+(swap 8<->2)
+
+[1, 2, 5, 3, 9, 4, 8]
+       ^  ^
+       |  |
+   start  item
+
+(swap 5<->3)
+
+[1, 2, 3, 5, 9, 4, 8]
+          ^     ^
+          |     |
+        start  item
+
+(swap 5<->4)
+
+[1, 2, 3, 4, 9, 5, 8]
+             ^  ^
+             |  |
+         start  item
+
+(swap 9<->5)
+
+[1, 2, 3, 4, 5, 9, 8]
+                ^  ^
+                |  |
+            start  item
+
+(swap 9<->8)
+
+[1, 2, 3, 4, 5, 8, 9]
+
+Pseudo-code algorithm:
+SelectionSort(Arr,N) {
+    // we begin with a data structure (Arr) and its number of elements from an input size (N)
+    // we loop through each element of the data structure
+    for (i=0;i<N-1;i++) {
+        // we set the currMinIdx to the current index in the array from the loop
+        currMinIdx = i;
+        // then we loop through each element in the data structure a second time (ignoring the current index, i)
+        for (j=i+1;j<N;j++) {
+            // we compare every element in the array with the currMinIdx 
+            if (Arr[j]<Arr[currMinIdx]) {
+                // if one of the element's of the data structure (j) is smaller than the currMinIndx, then let that element (j) be
+                // the new currMinIdx
+                currMinIdx=j;
+            }
+        // after we have compared every element and have found the currMinIdx relative to element (i) in the data structure, if
+        // the currMinIdx is a different index than the original element we were comparing with (i), then swap them
+        if (currMinIdx!=i) {
+            swap(Arr[i],Arr[currMinIdx]);
+        }
+        // loop through every element (i) until we've sorted the whole data structure
+        }
+    }
+    // finally, return the data structure
+    return Arr;
+}
+
+Theory:
+-Because we compare every element in the data structure with every other element in the data structure (regardless of what degree
+the data structure is sorted, since we still have to perform the comparison even if we don't have to swap values), then both the
+best and worst case time complexities of the Selection Sort algorithm are O(N^2) in big-O notation (the time complexity is an
+easily readable attribute of the algorithm given the double looping from a quick glanse)
+-Technically O(N^2) is an approximiation for (N*(N-1))/2 which is the actual time complexity for selection sort and the swapping
+has a worst time complexity of O(N) (an approximation for N-1) and a best time complexity of O(1) (although relatively speaking,
+swap speed has a much shorter execution time than comparison speed)
+Source: https://en.wikipedia.org/wiki/Selection_sort
+-Selection sort has an O(1) space complexity because no new data structure is created other than maybe one on the stack if we
+pass the data structure through a function using call by value
