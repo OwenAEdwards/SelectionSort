@@ -67,7 +67,7 @@ int main() {
 
     printf("The number of swaps was %d and the number of comparisons was %d\n",numSwaps,numComparisons);
 
-    printf("For reference, the time complexity for selection sort is (%d*(%d-1))/2 or %d comparisons, which is approximately O(N^2) for larger N\n",
+    printf("For reference, the time complexity for selection sort is (%d*(%d-1))/2 or %d comparisons, which is approximately O(N^2)\n",
     numOfElements,numOfElements,(numOfElements*(numOfElements-1))/2);
 
     return 0;
