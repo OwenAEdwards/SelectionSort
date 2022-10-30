@@ -9,6 +9,11 @@ room sorting them such that the 100mL glass is inside the 110mL glass and that t
 the 2080mL glass being inside of the 2090mL glass, where we have to check each individual glass to see if there is not one 
 smaller than the previous (determining a new minimum)
 
+Another real-life example:
+8 pairs of shoe sizes, ranging from 6 to 13, are in an unmatched ("unsorted") order, organizing them from smallest to largest by
+comparing every pair of shoes to all other pairs of shoes to obtain a new minimum shoe size, then continuing to check a different
+pair after that and setting it next to the previous minimum until all shoe sizes are organized
+
 Example:
 
 [2, 8, 5, 3, 9, 4, 1]
